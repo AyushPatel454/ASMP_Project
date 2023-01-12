@@ -1,33 +1,97 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-  home: Home(),
-));
+void main() => runApp(const MyApp());
 
-class Home extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  static const String _title = 'Log In';
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Log In'),
-        centerTitle: true,
-        backgroundColor: Colors.red[600],
-      ),
-      body:Container(
-        padding:EdgeInsets.all(30),
-        margin: EdgeInsets.symmetric(horizontal: 160,vertical: 200),
-        color: Colors.cyanAccent[100],
-        child: Text('hello'),
-      ),
-      
-      
-      
-      
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {  },
-        child: Text('click'),
-        backgroundColor: Colors.red[600],
+    return MaterialApp(
+      title: _title,
+      home: Scaffold(
+        appBar: AppBar(title: const Text(_title)),
+        body: const MyStatefulWidget(),
       ),
     );
   }
 }
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: <Widget>[
+            Container(
+                alignment: Alignment.topLeft,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Welcome',
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 30),
+                )),
+            Container(
+                alignment: Alignment.topLeft,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Sign in',
+                  style: TextStyle(fontSize: 20),
+                )),
+            Container(
+
+              padding: const EdgeInsets.fromLTRB(10,5,5,0),
+              child: TextField(
+
+                controller: nameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'user name',
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 5, 5, 0),
+              child: TextField(
+                obscureText: true,
+                controller: passwordController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                ),
+              ),
+            ),
+
+
+
+            Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Login'),
+                  onPressed: () {
+                    print(nameController.text);
+                    print(passwordController.text);
+                  },
+                )
+            ),
+
+          ],
+        ));
+  }
+}
+
