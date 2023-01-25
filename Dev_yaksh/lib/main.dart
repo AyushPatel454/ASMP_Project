@@ -1,15 +1,45 @@
+
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
   home : Home(),
 ));
 
-class Home extends StatelessWidget{
+class Home extends StatefulWidget{
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  // to validation of the form
+  void Validate(){
+    if(formkey.currentState!.validate()){
+      print("ok");
+
+    }else{
+      print("Error");
+    }
+  }
+
+
+
+  @override
+  // drop down list
+  late String valueChoose;
+  List listItem = [
+    "item 1",
+    "item 2",
+    "item 3"
+  ];
+
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+
       appBar: AppBar(
         title: Text('Log In'),
         centerTitle: true,
@@ -18,36 +48,75 @@ class Home extends StatelessWidget{
       ),
 
       body: Padding(
-        padding: EdgeInsets.fromLTRB(30, 40, 30, 0.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/a.jpg'),
-                radius: 40,
-              ),
-            ),
-            Divider(height: 90,color: Colors.grey[800],),
-            Text('NAME',style: TextStyle(color: Colors.grey,letterSpacing: 2)),
-            SizedBox(height: 10),
-            Text('YAKSH',style: TextStyle(color: Colors.amber,letterSpacing: 2,fontSize:25,fontWeight: FontWeight.bold)),
-            SizedBox(height: 30,),
-            Text('Current ninja level',style: TextStyle(color: Colors.grey,letterSpacing: 2)),
-            SizedBox(height: 10),
-            Text('5',style: TextStyle(color: Colors.amber,letterSpacing: 2,fontSize:25,fontWeight: FontWeight.bold)),
-            SizedBox(height: 30),
+        padding: EdgeInsets.all(25),
+        child:Center(
+          child: Form(
 
-            Row(
+            key : formkey,
+            child: Column(
               children: <Widget>[
-                Icon(Icons.email,color: Colors.grey[400],),
-                SizedBox(width: 10),
-                Text('panchalyaksh512@gmail.com',style: TextStyle(color:Colors.grey[400],fontSize: 18,letterSpacing: 1.0),),
+                TextFormField(
+
+                  decoration: InputDecoration(
+                    labelText: "Full Name",
+
+                    border: OutlineInputBorder()
+                  ),
+                  validator: (val){
+                    if(val!.isEmpty){
+                      return "Requied";
+                    }
+                    else{
+                      return null ;
+                    }
+                  },
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: "Email",
+                      border: OutlineInputBorder()
+                  ),
+                  validator: (val){
+                    if(val!.isEmpty){
+                      return "Requied";
+                    }
+                    else{
+                      return null ;
+                    }
+                  },
+                ),
+                
+                DropdownButton(
+                  value: valueChoose,
+                  onChanged: (newValue){
+                    setState(() {
+                      valueChoose = newValue ;
+                    });
+
+                  },
+                  items: listItem.map((valueItem) {
+                    return DropdownMenuItem(
+                      value: valueItem,
+                      child: Text(valueItem),
+                    );
+                  }).toList(),
+                ),
+                
+                
+                
+                
+                
+                
+                ElevatedButton(onPressed:Validate, child: Text('LOG IN')),
+
               ],
-            )
-          ],
+            ),
+          ),
         ),
-      ),
+      )
 
 
 
