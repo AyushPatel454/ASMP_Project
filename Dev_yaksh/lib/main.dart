@@ -14,6 +14,7 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home> {
 
+  String dropdownValue =  ;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   // to validation of the form
@@ -27,15 +28,16 @@ class _HomeState extends State<Home> {
   }
 
 
+  void dropdownCallback(String? newValue){
+    if(newValue is String){
+      setState (() {
+        dropdownValue = newValue;
+      });
+    }
+  }
 
   @override
-  // drop down list
-  late String valueChoose;
-  List listItem = [
-    "item 1",
-    "item 2",
-    "item 3"
-  ];
+
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,22 +90,18 @@ class _HomeState extends State<Home> {
                     }
                   },
                 ),
-                
                 DropdownButton(
-                  value: valueChoose,
-                  onChanged: (newValue){
-                    setState(() {
-                      valueChoose = newValue ;
-                    });
+                    items: const[
+                      DropdownMenuItem(child: Text('item1')),
+                      DropdownMenuItem(child: Text('item2')),
+                      DropdownMenuItem(child: Text('item3')),
+                      DropdownMenuItem(child: Text('item4')),
+                    ] ,
+                    value:dropdownValue,
+                    onChanged:(value){}),
 
-                  },
-                  items: listItem.map((valueItem) {
-                    return DropdownMenuItem(
-                      value: valueItem,
-                      child: Text(valueItem),
-                    );
-                  }).toList(),
-                ),
+
+
                 
                 
                 
