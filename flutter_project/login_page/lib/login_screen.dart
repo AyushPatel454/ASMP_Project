@@ -1,4 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:login_page/signup_page.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -64,6 +68,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: TextField(
                       decoration: InputDecoration(
+                          hintText: "Email",
+                          prefixIcon: Icon(Icons.email, color: Colors.deepOrangeAccent),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide(
@@ -100,6 +106,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: TextField(
                       decoration: InputDecoration(
+                          hintText: "Password",
+                          prefixIcon: Icon(Icons.password_outlined, color: Colors.deepOrangeAccent),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: BorderSide(
@@ -174,7 +182,8 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.bold
-                )
+                ),
+                  recognizer: TapGestureRecognizer()..onTap=()=>Get.to(()=>SignUpPage())
                 )
               ]
             ))
