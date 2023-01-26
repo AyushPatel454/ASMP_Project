@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
+
+
+// login for new user . . .
+
+
 class login_Screen extends StatefulWidget {
   const login_Screen({Key? key}) : super(key: key);
   @override
   State<login_Screen> createState() => _login_ScreenState();
 }
+GlobalKey<FormState> login_key = GlobalKey<FormState>();
+
+void Validate(){
+  if(login_key.currentState!.validate()){
+    print("ok");
+
+  }else{
+    print("Error");
+  }
+}
+
+
 List<String> fieldlist = [
   'Computer Science',
   'Mechanical',
@@ -119,38 +136,44 @@ class _login_ScreenState extends State<login_Screen> {
                   ],
                 ),
                 Padding(padding: EdgeInsets.only(top: 5)),
+
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: "Enter your college name",
+                      border: OutlineInputBorder()
+                  ),
+                  validator: (val){
+                    if(val!.isEmpty){
+                      return "Requied";
+                    }
+                    else{
+                      return null ;
+                    }
+                  },
+                ),
+                
+                Padding(padding: EdgeInsets.only(top: 40)),
+                
                 Row(
                   children: <Widget>[
+                    Expanded(flex: 3, child: Text(''),),
                     Expanded(
-                      flex: 2,
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          child:Text('Your College name :'),
-                    )),
-                    Expanded(
-                      flex: 4,
+                      flex: 3,
                       child:
-                      TextFormField(
-                        decoration: InputDecoration(
-                            labelText: "Enter password again",
-                            border: OutlineInputBorder()
-                        ),
-                        validator: (val){
-                          if(val!.isEmpty){
-                            return "Requied";
-                          }
-                          else{
-                            return null ;
-                          }
-                        },
+                      ElevatedButton(
+                        onPressed:Validate,
+                        child: Text('Log In'),
                       ),
                     ),
-
+                    Expanded(flex: 3, child: Text(''),),
 
 
 
                   ],
-                ),
+                )
+
+
+
               ],
             ),
           ),

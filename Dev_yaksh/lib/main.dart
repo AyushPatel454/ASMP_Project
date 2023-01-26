@@ -11,18 +11,21 @@ class Home extends StatefulWidget{
   @override
   State<Home> createState() => _HomeState();
 }
+GlobalKey<FormState> formkey = GlobalKey<FormState>();
+// to validation of the form
+void Validate(){
+  if(formkey.currentState!.validate()){
+    print("ok");
+
+  }else{
+    print("Error");
+  }
+}
+
 
 class _HomeState extends State<Home> {
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  // to validation of the form
-  void Validate(){
-    if(formkey.currentState!.validate()){
-      print("ok");
 
-    }else{
-      print("Error");
-    }
-  }
+
 
   // var myInitialItem = 'item1';
 
@@ -44,8 +47,10 @@ class _HomeState extends State<Home> {
             key : formkey,
             child: Column(
               children: <Widget>[
-                
+                Text('Welcome'),
                 Padding(padding: EdgeInsets.only(top: 50)),
+                Text('Enter Your Email Here :'),
+                Padding(padding: EdgeInsets.only(top: 10)),
                 // we take email from user
                 TextFormField(
                   decoration: InputDecoration(
@@ -64,6 +69,9 @@ class _HomeState extends State<Home> {
                 Padding(  // to adding space between two widgets
                   padding: EdgeInsets.only(top: 50),
                 ),
+
+                Text('Enter Your Password : '),
+                Padding(padding: EdgeInsets.only(top: 10)),
                 TextFormField(
                   decoration: InputDecoration(
                       labelText: "Passworld",
@@ -81,7 +89,7 @@ class _HomeState extends State<Home> {
 
                 // now we take student feild with usig dropdownlist button
                   
-                Padding(padding: EdgeInsets.only(top: 100)),
+                Padding(padding: EdgeInsets.only(top: 50)),
                 Row(
                   children: <Widget>[
                     Expanded(flex: 1, child: Text(''),),
@@ -118,6 +126,9 @@ class _HomeState extends State<Home> {
 
                   ],
                 ),
+
+                Padding(padding: EdgeInsets.only(top: 50)),
+                Text('For new user please sign up first ... '),
 
 
 
