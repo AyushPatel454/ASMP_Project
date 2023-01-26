@@ -29,7 +29,7 @@ class AuthController extends GetxController {
       print("login page");
       Get.offAll(()=>LoginPage()); // user login nai hoy to ene login page per mokli dese.
     } else {
-      Get.offAll(()=>WelcomePage()); // user login hoy to ene Welcom page per mokli dese.
+      Get.offAll(()=>WelcomePage(email:user.email.toString())); // user login hoy to ene Welcom page per mokli dese.
     }
   }
 
@@ -54,5 +54,32 @@ class AuthController extends GetxController {
         ),
       );
     }
+  }
+
+  void login(String email, password)async {
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+    } catch(e) {
+      Get.snackbar("About Login", "Login message",
+        backgroundColor: Colors.redAccent,
+        snackPosition: SnackPosition.BOTTOM,
+        titleText: Text(
+          "Login failed",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        messageText: Text(
+          e.toString(),
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      );
+    }
+  }
+
+  void logOut()async {
+    await auth.signOut();
   }
 }
