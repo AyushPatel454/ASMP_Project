@@ -2,6 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'Login_page.dart';
+//
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await firebase.initialization();
+//   runApp(const Home());
+// }
+
+
+
 void main() => runApp(MaterialApp(
   home : Home(),
 ));
@@ -48,7 +57,7 @@ class _HomeState extends State<Home> {
             child: Column(
               children: <Widget>[
                 Text('Welcome'),
-                Padding(padding: EdgeInsets.only(top: 50)),
+                Padding(padding: EdgeInsets.only(top: 30)),
                 Text('Enter Your Email Here :'),
                 Padding(padding: EdgeInsets.only(top: 10)),
                 // we take email from user
@@ -67,7 +76,7 @@ class _HomeState extends State<Home> {
                   },
                 ),
                 Padding(  // to adding space between two widgets
-                  padding: EdgeInsets.only(top: 50),
+                  padding: EdgeInsets.only(top: 5),
                 ),
 
                 Text('Enter Your Password : '),
@@ -89,7 +98,7 @@ class _HomeState extends State<Home> {
 
                 // now we take student feild with usig dropdownlist button
                   
-                Padding(padding: EdgeInsets.only(top: 50)),
+                Padding(padding: EdgeInsets.only(top: 10)),
                 Row(
                   children: <Widget>[
                     Expanded(flex: 1, child: Text(''),),
@@ -127,9 +136,18 @@ class _HomeState extends State<Home> {
                   ],
                 ),
 
-                Padding(padding: EdgeInsets.only(top: 50)),
+                Padding(padding: EdgeInsets.only(top: 5)),
                 Text('For new user please sign up first ... '),
-
+                Padding(padding: EdgeInsets.only(top: 10)),
+                Center(
+                  child: FloatingActionButton.extended(
+                    onPressed: (){},
+                    // icon : Image.asset('assets/a.jpg',height: 32,width: 32),
+                    label:Text('Sign in with Google'),
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                  ),
+                ),
 
 
 
