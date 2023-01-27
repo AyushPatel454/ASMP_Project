@@ -24,37 +24,46 @@ class SignUpPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Container(
+            //   width: w,
+            //   height: h*0.3,
+            //   decoration: BoxDecoration(
+            //       image: DecorationImage(
+            //           image: AssetImage(
+            //               "img/signup.png"
+            //           ),
+            //           fit: BoxFit.cover
+            //       )
+            //   ),
+            //   child: Column(
+            //     children: [
+            //       SizedBox(height: h*0.14,),
+            //       CircleAvatar(
+            //         backgroundColor: Colors.white70,
+            //         radius: 60,
+            //         backgroundImage: AssetImage(
+            //           "img/profile1.png"
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
+
+            SizedBox(height: 40,),
+
             Container(
-              width: w,
-              height: h*0.3,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                          "img/signup.png"
-                      ),
-                      fit: BoxFit.cover
-                  )
-              ),
-              child: Column(
-                children: [
-                  SizedBox(height: h*0.14,),
-                  CircleAvatar(
-                    backgroundColor: Colors.white70,
-                    radius: 60,
-                    backgroundImage: AssetImage(
-                      "img/profile1.png"
-                    ),
-                  )
-                ],
-              ),
+              child: Text(' FILL THE DETAILS '),
             ),
+
+            SizedBox(height: 30,),
+
             Container(
               margin: const EdgeInsets.only(left: 20, right: 20),
               width: w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 40,),
+                  SizedBox(height: 10,),
                   Container(
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -93,7 +102,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 10,),
                   Container(
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -133,7 +142,51 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 10,),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              spreadRadius: 7,
+                              offset: Offset(1,1),
+                              color: Colors.grey.withOpacity(0.2)
+                          )
+                        ]
+                    ),
+                    child: TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: "Password",
+                          prefixIcon: Icon(Icons.password_outlined, color: Colors.deepOrangeAccent),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide(
+                                  color: Colors.white,
+                                  width: 1.0
+                              )
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide(
+                                  color: Colors.white,
+                                  width: 1.0
+                              )
+                          ),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          )
+                      ),
+                    ),
+                  ),
+
+
+
+
+                  SizedBox(height: 10,),
                   // Row(
                   //   children: [
                   //     Expanded(child: Container(),),
@@ -155,10 +208,10 @@ class SignUpPage extends StatelessWidget {
                 AuthController.instance.register(emailController.text.trim(), passwordController.text.trim());
               },
               child: Container(
-                width: w*0.5,
-                height: h*0.08,
+                width: w*0.3,
+                height: h*0.05,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(50),
                     image: DecorationImage(
                         image: AssetImage(
                             "img/loginbtn.png"
@@ -170,7 +223,7 @@ class SignUpPage extends StatelessWidget {
                   child: Text(
                     "Sign up",
                     style: TextStyle(
-                        fontSize: 29,
+                        fontSize: 19,
                         fontWeight: FontWeight.bold,
                         color: Colors.white
                     ),
@@ -184,7 +237,7 @@ class SignUpPage extends StatelessWidget {
                 recognizer: TapGestureRecognizer()..onTap=()=>Get.back(),
                 text: "Have an account?",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 15,
                   color: Colors.grey[500]
                 )
               )
@@ -194,7 +247,7 @@ class SignUpPage extends StatelessWidget {
                 text: "Sign up using one of the following method",
                 style: TextStyle(
                     color: Colors.grey[500],
-                    fontSize: 16
+                    fontSize: 15
                 ),
             )
             ),
@@ -206,7 +259,7 @@ class SignUpPage extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: CircleAvatar(
                       radius: 30,
-                      backgroundColor: Colors.grey[500],
+                      backgroundColor: Colors.grey[700],
                       child: CircleAvatar(
                         radius: 26,
                         backgroundImage: AssetImage(
