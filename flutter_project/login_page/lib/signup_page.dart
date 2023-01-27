@@ -4,8 +4,27 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:login_page/auth_controller.dart';
 
+
+
+
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+
+   final List<String> fieldlist = [
+    'Computer Science',
+    'Mechanical',
+    'Electrical',
+
+  ];
+   String _dropDownc = 'Computer Science';
+
+  final List<String> _items = [
+    'Parul University',
+    'MS University',
+  ];
+
+
+  String _dropDownValue = 'Parul University';
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +36,9 @@ class SignUpPage extends StatelessWidget {
       "t.png",
       "f.png"
     ];
+
+
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -52,10 +74,103 @@ class SignUpPage extends StatelessWidget {
             SizedBox(height: 40,),
 
             Container(
-              child: Text(' FILL THE DETAILS '),
-            ),
+              child: Text(
+                ' FILL THE DETAILS ',
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+
+                ),
+              ),
+            ),  // fill the details
 
             SizedBox(height: 30,),
+
+            Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              width: w,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 7,
+                        offset: Offset(1,1),
+                        color: Colors.grey.withOpacity(0.2)
+                    )
+                  ]
+              ),
+              child: TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                    hintText: "First Name ",
+                    prefixIcon: Icon(Icons.account_circle, color: Colors.deepOrangeAccent),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 1.0
+                        )
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 1.0
+                        )
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)
+                    )
+                ),
+              ),
+            ), // first name
+
+            SizedBox(height: 10,),
+
+            Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              width: w,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 7,
+                        offset: Offset(1,1),
+                        color: Colors.grey.withOpacity(0.2)
+                    )
+                  ]
+              ),
+              child: TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                    hintText: "Last Name ",
+                    prefixIcon: Icon(Icons.account_circle, color: Colors.deepOrangeAccent),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 1.0
+                        )
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 1.0
+                        )
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)
+                    )
+                ),
+              ),
+            ), // last name
+
 
             Container(
               margin: const EdgeInsets.only(left: 20, right: 20),
@@ -120,7 +235,7 @@ class SignUpPage extends StatelessWidget {
                       controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                          hintText: "Password",
+                          hintText: "Enter Password",
                           prefixIcon: Icon(Icons.password_outlined, color: Colors.deepOrangeAccent),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -160,7 +275,7 @@ class SignUpPage extends StatelessWidget {
                       controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                          hintText: "Password",
+                          hintText: "Re-Enter Password",
                           prefixIcon: Icon(Icons.password_outlined, color: Colors.deepOrangeAccent),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -183,6 +298,22 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
 
+                  
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              spreadRadius: 7,
+                              offset: Offset(1,1),
+                              color: Colors.grey.withOpacity(0.2)
+                          )
+                        ]
+                    ),
+                  ),
+
 
 
 
@@ -201,8 +332,107 @@ class SignUpPage extends StatelessWidget {
                   // )
                 ],
               ),
-            ),
-            SizedBox(height: 60,),
+            ),  // Email password
+
+            SizedBox(height: 10,),
+
+            Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              width: w,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 7,
+                        offset: Offset(1,1),
+                        color: Colors.grey.withOpacity(0.2)
+                    )
+                  ]
+              ),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      '    Your Cource : ' ,
+                      style: TextStyle(
+                        color: Colors.orange ,
+                        fontSize:16,
+                        fontWeight:FontWeight.bold,
+
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: DropdownButton(
+                    value: _dropDownc,
+                    items: fieldlist.map((String fieldlist){
+                      return DropdownMenuItem(value: fieldlist,child: Text(fieldlist));
+
+                    }).toList(),
+                    onChanged: (String? newValue){
+                      setState(() {
+                        _dropDownc = newValue!;
+                      });
+                    },
+                  ),
+                  ),
+                ],
+              ),
+            ),  // choose your field
+
+            SizedBox(height: 10,),
+
+            Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              width: w,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 7,
+                        offset: Offset(1,1),
+                        color: Colors.grey.withOpacity(0.2)
+                    )
+                  ]
+              ),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      '    Your College  : ' ,
+                      style: TextStyle(
+                        color: Colors.orange ,
+                        fontSize:16,
+                        fontWeight:FontWeight.bold,
+
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: DropdownButton(
+                      value: _dropDownValue,
+                      items: _items.map((String _items){
+                        return DropdownMenuItem(value: _items,child: Text(_items));
+
+                      }).toList(),
+                      onChanged: (String? newValue){
+                        setState(() {
+                          _dropDownValue = newValue!;
+                        });
+                        },
+                    ),
+                  ),
+                ],
+              ),
+            ),  // choose your college
+
+            SizedBox(height: 30,),
+
+
             GestureDetector(
               onTap: (){
                 AuthController.instance.register(emailController.text.trim(), passwordController.text.trim());
@@ -229,9 +459,14 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+              ),  // sign up
             ),
+
+
             SizedBox(height: 10,),
+
+
+
             RichText(
               text: TextSpan(
                 recognizer: TapGestureRecognizer()..onTap=()=>Get.back(),
@@ -242,7 +477,9 @@ class SignUpPage extends StatelessWidget {
                 )
               )
             ),
-            SizedBox(height: w*0.18,),
+
+            SizedBox(height: 20,),
+
             RichText(text: TextSpan(
                 text: "Sign up using one of the following method",
                 style: TextStyle(
@@ -251,6 +488,8 @@ class SignUpPage extends StatelessWidget {
                 ),
             )
             ),
+
+
             Wrap(
               children: List<Widget>.generate(
                 3,
@@ -276,4 +515,8 @@ class SignUpPage extends StatelessWidget {
       ),
     );
   }
+}
+
+void setState(Null Function() param0) {
+
 }
