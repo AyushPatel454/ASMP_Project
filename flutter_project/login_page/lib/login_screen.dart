@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:login_page/HomeScreen/Home.dart';
 import 'package:login_page/auth_controller.dart';
 import 'package:login_page/signup_page.dart';
 import 'package:get/get.dart';
@@ -140,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Expanded(child: Container(),),
                         Text(
-                          "Forget Password?",
+                          "Forget Password ?",
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.grey[500],
@@ -152,35 +153,46 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 60,),
+
               GestureDetector(
+
                 onTap: (){
                   AuthController.instance.login(emailController.text.trim(), passwordController.text.trim());
                 },
                 child: Container(
-                  width: w*0.5,
-                  height: h*0.08,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "img/loginbtn.png"
-                          ),
-                          fit: BoxFit.cover
-                      )
-                  ),
+                  // width: w*0.5,
+                  // height: h*0.08,
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(30),
+                  //     image: DecorationImage(
+                  //         image: AssetImage(
+                  //             "img/loginbtn.png"
+                  //         ),
+                  //         fit: BoxFit.cover
+                  //     )
+                  // ),
                   child: Center(
-                    child: Text(
-                      "Sign in",
-                      style: TextStyle(
-                          fontSize: 29,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.pinkAccent,
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        )
                       ),
+                      child: Text(
+                          'SignUP',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()),);
+                        },
                     ),
                   ),
                 ),
               ),
+
               SizedBox(height: w*0.08,),
+
               RichText(text: TextSpan(
                 text: "Don\'t have an account?",
                 style: TextStyle(
@@ -195,10 +207,10 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold
                   ),
-                    recognizer: TapGestureRecognizer()..onTap=()=>Get.to(()=>SignUpPage())
-                  )
-                ]
-              ))
+                    recognizer: TapGestureRecognizer()..onTap=()=>Get.to(()=>SignUpPage()),
+                  ),
+                ],
+              )),
             ],
           ),
         ),
