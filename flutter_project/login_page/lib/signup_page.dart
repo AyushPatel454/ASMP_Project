@@ -9,21 +9,20 @@ import 'package:login_page/auth_controller.dart';
 
 class SignUpPage extends StatelessWidget {
 
-   final List<String> fieldlist = [
+  String courcevalue = 'Computer Science';
+  String collegevalue = 'Parul University';
+
+  List<String> cources = [
     'Computer Science',
     'Mechanical',
     'Electrical',
 
   ];
-   String _dropDownc = 'Computer Science';
-
-  final List<String> _items = [
+  List<String> colleges = [
     'Parul University',
     'MS University',
   ];
 
-
-  String _dropDownValue = 'Parul University';
 
 
   @override
@@ -36,8 +35,6 @@ class SignUpPage extends StatelessWidget {
       "t.png",
       "f.png"
     ];
-
-
 
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
@@ -103,7 +100,7 @@ class SignUpPage extends StatelessWidget {
                   ]
               ),
               child: TextField(
-                controller: emailController,
+                // controller: emailController,
                 decoration: InputDecoration(
                     hintText: "First Name ",
                     prefixIcon: Icon(Icons.account_circle, color: Colors.deepOrangeAccent),
@@ -146,7 +143,7 @@ class SignUpPage extends StatelessWidget {
                   ]
               ),
               child: TextField(
-                controller: emailController,
+                // controller: emailController,
                 decoration: InputDecoration(
                     hintText: "Last Name ",
                     prefixIcon: Icon(Icons.account_circle, color: Colors.deepOrangeAccent),
@@ -272,7 +269,7 @@ class SignUpPage extends StatelessWidget {
                         ]
                     ),
                     child: TextField(
-                      controller: passwordController,
+                      // controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "Re-Enter Password",
@@ -366,14 +363,16 @@ class SignUpPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: DropdownButton(
-                    value: _dropDownc,
-                    items: fieldlist.map((String fieldlist){
-                      return DropdownMenuItem(value: fieldlist,child: Text(fieldlist));
-
+                    value: courcevalue,
+                    items: cources.map((String cources){
+                      return DropdownMenuItem(
+                          value: cources,
+                          child: Text(cources),
+                      );
                     }).toList(),
                     onChanged: (String? newValue){
                       setState(() {
-                        _dropDownc = newValue!;
+                        courcevalue = newValue!;
                       });
                     },
                   ),
@@ -414,14 +413,14 @@ class SignUpPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: DropdownButton(
-                      value: _dropDownValue,
-                      items: _items.map((String _items){
-                        return DropdownMenuItem(value: _items,child: Text(_items));
+                      value: collegevalue,
+                      items: colleges.map((String colleges){
+                        return DropdownMenuItem(value: colleges,child: Text(colleges));
 
                       }).toList(),
-                      onChanged: (String? newValue){
+                      onChanged: (String? newcollege){
                         setState(() {
-                          _dropDownValue = newValue!;
+                          collegevalue = newcollege!;
                         });
                         },
                     ),
