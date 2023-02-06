@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:login_page/auth_controller.dart';
+import 'package:login_page/login_screen.dart';
 
 
 
@@ -449,13 +450,20 @@ class SignUpPage extends StatelessWidget {
                     )
                 ),
                 child: Center(
-                  child: Text(
-                    "Sign up",
-                    style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.pinkAccent,
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        )
                     ),
+                    child: Text(
+                      'SignUP',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()),);
+                    },
                   ),
                 ),
               ),  // sign up
