@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-class soryapp extends StatelessWidget {
-  const soryapp({Key? key}) : super(key: key);
+class post extends StatelessWidget {
+  const post({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
