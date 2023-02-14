@@ -38,6 +38,8 @@ dependencies:
   get:
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
+  tap_animation_kit: ^1.0.0
+  animated_text_kit: ^4.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

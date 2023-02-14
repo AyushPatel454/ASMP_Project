@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   List<Widget> body = const [
     post(),
-    matirial(),
+    MatirialPage(),
     que_ans(),
     profile(),
   ];
@@ -22,22 +22,46 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:
-        Icon(Icons.star_border,
-        size: 40,
-        color: Colors.grey[600],
-        ),
+       // leading:
+        // Icon(Icons.star_border,
+        // size: 40,
+        // color: Colors.grey[600],
+        // ),
         title: Text('',
           style: TextStyle(),
         ),
-        actions: [
-          // IconButton(
-          //   icon: Icon(Icons.search,
-          //   size: 35,
-          //   ), onPressed:(){}),
-          
-          // IconButton(icon:Image.asset('assets/img') , onPressed: (){},)
-        ],
+
+
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Message'),
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text('profile'),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+            ),
+          ],
+        ),
       ),
 
       body:Center(
