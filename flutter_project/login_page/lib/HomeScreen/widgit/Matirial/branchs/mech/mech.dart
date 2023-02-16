@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
-
-import 'package:login_page/HomeScreen/widgit/Matirial/branchs/Cse/subjects/computer_network.dart';
-class Cse extends StatefulWidget {
-  const Cse({Key? key}) : super(key: key);
+class Mech extends StatefulWidget {
+  const Mech({Key? key}) : super(key: key);
 
   @override
-  State<Cse> createState() => _CseState();
+  State<Mech> createState() => _MechState();
 }
 
-class _CseState extends State<Cse> {
+class _MechState extends State<Mech> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('computer Science Engineering'),
+        title: Text('Mechanical Engineeing'),
       ),
+
       body: Center(
         child: Column(
           children: <Widget>[
-
-            SizedBox(height: 20,),
-            Text('Which Subject Matirial You Want ?' , style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold
-            ),),
-
-            SizedBox(height: 30,),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
@@ -38,12 +29,12 @@ class _CseState extends State<Cse> {
                 minimumSize: Size(300, 36),
               ),
               onPressed:(){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CN()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => ),
+                //);
               },
-              child: Text('Computer Network'),
+              child: Text('Matirial Science and Engineering'),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -57,7 +48,7 @@ class _CseState extends State<Cse> {
                 minimumSize: Size(300, 36),
               ),
               onPressed: () {} ,
-              child: Text('Operating System'),
+              child: Text('Steam Power plant'),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -71,7 +62,7 @@ class _CseState extends State<Cse> {
                 minimumSize: Size(300, 36),
               ),
               onPressed: () {} ,
-              child: Text('Mobile App Devlopment'),
+              child: Text('fluid Engineering'),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -85,7 +76,7 @@ class _CseState extends State<Cse> {
                 minimumSize: Size(300, 36),
               ),
               onPressed: () {} ,
-              child: Text('Web Devlopment'),
+              child: Text('mech subject_name'),
             ),
           ],
         ),

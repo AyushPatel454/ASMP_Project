@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/HomeScreen/widgit/Matirial/branchs/Cse/Cse.dart';
+import 'package:login_page/HomeScreen/widgit/Matirial/branchs/elec/elec.dart';
+import 'package:login_page/HomeScreen/widgit/Matirial/branchs/mech/mech.dart';
 class MatirialPage extends StatefulWidget {
   const MatirialPage({Key? key}) : super(key: key);
 
@@ -50,7 +52,10 @@ class _MatirialPageState extends State<MatirialPage> {
               },
 
           ),
-          ElevatedButton(
+
+          SizedBox(height: 30,),
+
+          ElevatedButton(child: Text('Mechanical Engineering'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black,
               foregroundColor: Colors.white,
@@ -60,12 +65,17 @@ class _MatirialPageState extends State<MatirialPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               minimumSize: Size(300, 36),
-
-
             ),
-            onPressed: () {} ,
-            child: Text('Mechanical Engineering'),
+            onPressed:(){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Mech()),
+              );
+            },
           ),
+
+          SizedBox(height: 30,),
+
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black,
@@ -79,7 +89,12 @@ class _MatirialPageState extends State<MatirialPage> {
 
 
             ),
-            onPressed: () {} ,
+            onPressed:(){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => elec()),
+              );
+            },
             child: Text('Electrical Engineering'),
           ),
 

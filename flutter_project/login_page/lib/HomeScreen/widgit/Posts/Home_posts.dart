@@ -7,16 +7,24 @@ class post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          new_post();
+        onPressed:(){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => new_post()),
+          );
         },
         tooltip: 'New Post',
         child: Icon(Icons.add),
 
       ),
-      body: Container(
+      body: Center(
+        child: Container(
+          child: Text('this is home page for post '),
 
+        ),
       ),
 
 

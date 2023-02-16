@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ),
                       child: Text(
-                          'SignUP',
+                          'LogIn',
                         style: TextStyle(fontSize: 25),
                       ),
                       onPressed: (){
