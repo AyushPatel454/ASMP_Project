@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:student_app/screens/matirial_screens/screen/CSE/Computer_network/cn.dart';
 import 'package:student_app/screens/matirial_screens/screen/CSE/Os/os.dart';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 class Cse_page extends StatefulWidget {
   const Cse_page({Key? key}) : super(key: key);
 
@@ -21,10 +22,23 @@ class _Cse_pageState extends State<Cse_page> {
           children: <Widget>[
 
             SizedBox(height: 20,),
-            Text('Which Subject Matirial You Want ?' , style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-            ),),
+            AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  'Select The Subject ?',
+                  textStyle: const TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  speed: const Duration(milliseconds: 100),
+                ),
+              ],
+
+              totalRepeatCount: 2,
+              pause: const Duration(milliseconds: 1000),
+              displayFullTextOnTap: true,
+              stopPauseOnTap: true,
+            ),
 
             SizedBox(height: 30,),
             ElevatedButton(

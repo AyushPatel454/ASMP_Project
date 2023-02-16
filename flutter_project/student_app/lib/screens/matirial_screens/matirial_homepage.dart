@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_app/screens/matirial_screens/screen/CSE/cse.dart';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 class Matirial extends StatefulWidget {
   const Matirial({Key? key}) : super(key: key);
 
@@ -26,15 +27,27 @@ class _MatirialState extends State<Matirial> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
+                color: Colors.deepOrange,
               ),
             ),
             SizedBox(height: 10,),
 
-            Text('which Matirial You want ? ',
-              style: TextStyle(
-                fontSize: 20,
+            AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  'What branch Matirial You Want ?',
+                  textStyle: const TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  speed: const Duration(milliseconds: 100),
+                ),
+              ],
 
-              ),
+              totalRepeatCount: 1,
+              pause: const Duration(milliseconds: 100),
+              displayFullTextOnTap: true,
+              stopPauseOnTap: true,
             ),
             SizedBox(height: 50,),
 
