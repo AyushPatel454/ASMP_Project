@@ -8,7 +8,6 @@ import 'package:student_app/responsive/mobile_screen_layout.dart';
 import 'package:student_app/responsive/responsive_layout_scren.dart';
 import 'package:student_app/responsive/web_screen_layout.dart';
 import 'package:student_app/screens/login_screen.dart';
-import 'package:student_app/screens/signup_screen.dart';
 import 'package:student_app/utils/colors.dart';
 
 void main() async { // for web
