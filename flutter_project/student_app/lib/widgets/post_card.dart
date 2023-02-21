@@ -61,10 +61,12 @@ class _PostCardState extends State<PostCard> {
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16)
                 .copyWith(right: 0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // --> Display profile image
                 CircleAvatar(
-                  radius: 20,
+                  radius: 25,
                   backgroundImage: NetworkImage(
                     widget.snap[
                         'profImage'], // take profile image url from Firestore Database docs --> Posts docs.
@@ -86,11 +88,11 @@ class _PostCardState extends State<PostCard> {
                             Text(
                               widget.snap[
                                   'username'], // take username from Firestore Database docs --> Posts docs.
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                             ),
                             Text(
                               widget.snap['field'],
-                              style: TextStyle(fontSize: 12),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ],
                         ),

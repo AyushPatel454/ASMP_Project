@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_app/screens/add_answer_screen.dart';
+import 'package:student_app/widgets/answer_card.dart';
 
 import '../models/user.dart';
 import '../providers/user_provider.dart';
@@ -14,6 +16,8 @@ class ListOfAnswer extends StatefulWidget {
 }
 
 class _ListOfAnswerState extends State<ListOfAnswer> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     // --> Get current user data.
@@ -229,13 +233,29 @@ class _ListOfAnswerState extends State<ListOfAnswer> {
               // --> Display other answers.
               Column(
                 children: [
-                  // --> Checkking of scroll
-                  // Container(
-                  //   color: Colors.red,
-                  //   width: double.infinity,
-                  //   height: 200,
-                  //   child: Text('check...!!'),
-                  // )
+                  Scrollbar(
+                      controller: _scrollController,
+                      thumbVisibility: true,
+                      child: StreamBuilder(
+                        // StreamBuilder() --> read real time stuff
+                          stream: FirebaseFirestore.instance.collection('questions').doc(widget.snap['questionId']).collection('answers').orderBy('datePublished', descending: true).snapshots(), // --> Orderby: for filtering. on based on date published. descending: true -> newest post shown top.
+                          builder: (context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            return ListView.builder(
+                              controller: _scrollController,
+                              shrinkWrap: true, // --> Important for scrolling
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) => AnswerCard(
+                                snap: snapshot.data!.docs[index].data(),
+                              ),
+                            );
+                          }
+                      )
+                  ),
                 ],
               )
             ],
