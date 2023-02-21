@@ -189,7 +189,9 @@ class _ListOfAnswerState extends State<ListOfAnswer> {
                         width: MediaQuery.of(context).size.width * 0.3,
                         child: TextButton(
                           onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => UploadAnswer(),),
+                            MaterialPageRoute(builder: (context) => UploadAnswer(
+                              snap: widget.snap,
+                            ),),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

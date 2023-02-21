@@ -120,6 +120,7 @@ class _QuestionFormState extends State<QuestionForm> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // --> Dropdown menu
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(labelText: 'Question Type'),
                 value: _selectedQuestionType,
@@ -141,7 +142,10 @@ class _QuestionFormState extends State<QuestionForm> {
                   return null;
                 },
               ),
+
               SizedBox(height: 16.0),
+
+              // --> Write Question here
               TextFormField(
                 // controller: _questionController,
                 decoration: InputDecoration(
@@ -157,7 +161,10 @@ class _QuestionFormState extends State<QuestionForm> {
                   });
                 },
               ),
+
               SizedBox(height: 16.0),
+
+              // --> Select image
               ElevatedButton.icon(
                 onPressed: _pickImage,
                 icon: Icon(Icons.image),
@@ -173,7 +180,10 @@ class _QuestionFormState extends State<QuestionForm> {
                   });
                 }, icon: Icon(Icons.clear), label: Text('Remove image'),),
               ],
+
               SizedBox(height: 16.0),
+
+              // --> Submit question
               ElevatedButton(
                 onPressed: () => postQuestion(
                   user.uid,
@@ -182,18 +192,6 @@ class _QuestionFormState extends State<QuestionForm> {
                   user.field, // pass field of user
                   user.institue, // pass student institute
                 ),
-                // {
-                //   // Handle form submission here
-                //   if (_formKey.currentState!.validate()) {
-                //     // Handle form submission here
-                //     print('Selected Question Type: $_selectedQuestionType');
-                //   }
-                //   print('Selected Question Type: $_selectedQuestionType');
-                //   print('Question Text: $_questionText');
-                //   if (_selectedImage != null) {
-                //     print('Selected Image: ${_selectedImage!.path}');
-                //   }
-                // },
                 child: _isLoading ? const LinearProgressIndicator() : Text('Submit'),
               ),
             ],

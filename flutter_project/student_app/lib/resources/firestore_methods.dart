@@ -6,6 +6,7 @@ import 'package:student_app/models/question.dart';
 import 'package:student_app/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 
+import '../models/answer.dart';
 import '../models/post.dart';
 
 class FirestoreMethods {
@@ -90,6 +91,55 @@ class FirestoreMethods {
 
       // --> Store data in Fire Store Database. (Post image not store. It will be store in Storage Database. -> storage_methods.dart file for post image store in storage database.)
       _firestore.collection('questions').doc(questionId).set(que.toJson(),); // --> post.toJson -> Convert in JSON format & uplaod in firestore datbase
+
+      res = "success";
+    } catch(err) {
+      res = err.toString();
+      print(err.toString());
+    }
+
+    return res;
+  }
+
+  // --> Upload Answer
+  Future<String> uploadAnswer(
+      String questionId,
+      String answer,
+      // File file,
+      // Uint8List file,
+      String photoUrl,
+      String uid,
+      String username,
+      String profImage,
+      String userField,
+      String userInstitue
+      ) async {
+    String res = "Some error occured";
+    try {
+      // upload in firestore & take url of image & store in variable.
+      // String photoUrl = '';
+      // if(file != null) {
+      //   photoUrl = await StorageMethods().uploadImageToStorage('question', file, true);
+      // }
+
+
+      String answerId = const Uuid().v1();
+      Answer ans = Answer(
+          questionId: questionId,
+          answer: answer,
+          uid: uid,
+          username: username,
+          answerId: answerId,
+          datePublished: DateTime.now(),
+          postUrl: photoUrl,
+          profImage: profImage,
+          likes: [],
+          field: userField,
+          institute: userInstitue
+      );
+
+      // --> Store data in Fire Store Database. (Post image not store. It will be store in Storage Database. -> storage_methods.dart file for post image store in storage database.)
+      _firestore.collection('questions').doc(questionId).collection('answers').doc(answerId).set(ans.toJson(),); // --> post.toJson -> Convert in JSON format & uplaod in firestore datbase
 
       res = "success";
     } catch(err) {
