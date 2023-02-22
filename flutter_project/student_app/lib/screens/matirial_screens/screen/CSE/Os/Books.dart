@@ -19,10 +19,10 @@ class _BookState extends State<Book> {
             leading: Icon(Icons.book,size: 45,),
             title: Text('Book 1'),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => Assignment()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Assignment()),
+              );
             },
 
             subtitle: Text('Click to Oper'),
@@ -30,10 +30,10 @@ class _BookState extends State<Book> {
           ListTile(
             leading: Icon(Icons.book,size: 45,),
             onTap: (){
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => Assignment()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Assignment()),
+              );
             },
             title: Text('Book 2'),
             subtitle: Text('Click to Open'),
@@ -42,10 +42,10 @@ class _BookState extends State<Book> {
           ListTile(
             leading: Icon(Icons.book,size: 45,),
             onTap: (){
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => Assignment()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Assignment()),
+              );
             },
             title: Text('Book 3'),
             subtitle: Text('Click to Open'),

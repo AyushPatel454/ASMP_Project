@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:student_app/screens/matirial_screens/screen/CSE/Computer_network/Books.dart';
 import 'package:student_app/screens/matirial_screens/screen/CSE/Computer_network/assignments.dart';
 import 'package:student_app/screens/matirial_screens/screen/CSE/Computer_network/notes.dart';
-import 'package:student_app/screens/matirial_screens/screen/CSE/Os/os.dart';
 class CN extends StatefulWidget {
   const CN({Key? key}) : super(key: key);
 
