@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:student_app/screens/Material/branchs/Cse/subjects/computer_network.dart';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 
-
-class Cse extends StatefulWidget {
-  const Cse({Key? key}) : super(key: key);
+import 'Computer_network/cn.dart';
+import 'Os/os.dart';
+class Cse_page extends StatefulWidget {
+  const Cse_page({Key? key}) : super(key: key);
 
   @override
-  State<Cse> createState() => _CseState();
+  State<Cse_page> createState() => _Cse_pageState();
 }
 
-class _CseState extends State<Cse> {
+class _Cse_pageState extends State<Cse_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +23,23 @@ class _CseState extends State<Cse> {
           children: <Widget>[
 
             SizedBox(height: 20,),
-            Text('Which Subject Matirial You Want ?' , style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold
-            ),),
+            AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  'Select The Subject ?',
+                  textStyle: const TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  speed: const Duration(milliseconds: 100),
+                ),
+              ],
+
+              totalRepeatCount: 2,
+              pause: const Duration(milliseconds: 1000),
+              displayFullTextOnTap: true,
+              stopPauseOnTap: true,
+            ),
 
             SizedBox(height: 30,),
             ElevatedButton(
@@ -58,7 +72,12 @@ class _CseState extends State<Cse> {
                 ),
                 minimumSize: Size(300, 36),
               ),
-              onPressed: () {} ,
+              onPressed:(){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OS()),
+                );
+              },
               child: Text('Operating System'),
             ),
             ElevatedButton(
@@ -95,3 +114,4 @@ class _CseState extends State<Cse> {
     );
   }
 }
+
