@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_app/screens/Material/Matirial_home.dart';
 
 import '../screens/add_post_screen.dart';
 import '../screens/feed_screen.dart';
@@ -10,7 +11,8 @@ const homeScreenItem = [
   FeedScreen(),
   QuestionFeed(),
   AddPostScreen(),
-  Center(child: Text('Material')),
+  // Center(child: Text('Material')),
+  MaterialHome(),
   Center(child: Text('profile')),
 ];
 
