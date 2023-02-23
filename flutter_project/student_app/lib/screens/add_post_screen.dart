@@ -12,6 +12,7 @@ import '../providers/user_provider.dart';
 import '../resources/firestore_methods.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
+import '../widgets/dropdown_menu_fetch_firebase.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({Key? key}) : super(key: key);
@@ -261,6 +262,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
             ),
           )
         : _file != null
+            // Image Upload Screen
             ? Scaffold(
                 // after click on icon
                 // --> Top bar of screen. -> appBar --> AppBar()
@@ -377,6 +379,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   ),
                 ),
               )
+            // Pdf Uplaod screen
             : Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.blue,
@@ -401,21 +404,43 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   ],
                 ),
                 body: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 400,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: PDFView(
-                          filePath: _pdfFile!.path,
-                          enableSwipe: true,
-                          swipeHorizontal: true,
-                          autoSpacing: false,
-                          pageFling: false,
-                          defaultPage: 0,
+                  child: Container(
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Pdf view
+                        Container(
+                          color: Colors.grey,
+                          padding: EdgeInsets.all(10),
+                          child: SizedBox(
+                            height: 400,
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: PDFView(
+                              filePath: _pdfFile!.path,
+                              enableSwipe: true,
+                              swipeHorizontal: true,
+                              autoSpacing: false,
+                              pageFling: false,
+                              defaultPage: 0,
+                            ),
+                          ),
                         ),
-                      )
-                    ],
+
+                        // --> Remove Pdf
+                        ElevatedButton.icon(
+                          onPressed: () {
+                          setState(() {
+                            _pdfFile = null;
+                          });
+                        },
+                          icon: Icon(Icons.clear), label: Text('Remove Selection'),
+                        ),
+
+                        // --> Dropdown menu for Select field
+                        MyDropdownButton(),
+                      ],
+                    ),
                   ),
                 ),
               );
