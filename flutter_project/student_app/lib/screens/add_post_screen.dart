@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:student_app/screens/upload_material.dart';
 
 import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../resources/firestore_methods.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
-import '../widgets/dropdown_menu_fetch_firebase.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({Key? key}) : super(key: key);
@@ -61,6 +61,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     }
   }
 
+  // --> Select Image from device
   _selectImage(BuildContext context) async {
     return showDialog(
         context: context,
@@ -124,27 +125,27 @@ class _AddPostScreenState extends State<AddPostScreen> {
   }
 
   // --> For Pdf Selection & methods
-  File? _pdfFile;
-
-  void _pickPDF() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-    );
-
-    if (result != null) {
-      setState(() {
-        _pdfFile = File(result.files.single.path!);
-      });
-    }
-  }
-
-  // --> After Pdf successfully upload. remove from code memory _file. & show screen.
-  void clearPdf() {
-    setState(() {
-      _pdfFile = null;
-    });
-  }
+  // File? _pdfFile;
+  //
+  // void _pickPDF() async {
+  //   final result = await FilePicker.platform.pickFiles(
+  //     type: FileType.custom,
+  //     allowedExtensions: ['pdf'],
+  //   );
+  //
+  //   if (result != null) {
+  //     setState(() {
+  //       _pdfFile = File(result.files.single.path!);
+  //     });
+  //   }
+  // }
+  //
+  // // --> After Pdf successfully upload. remove from code memory _file. & show screen.
+  // void clearPdf() {
+  //   setState(() {
+  //     _pdfFile = null;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +158,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
     //   ),
     // );
 
-    return _file == null && _pdfFile == null
+    // return _file == null && _pdfFile == null
+    return _file == null
         // ? Center( // --> Showing upload options
         //     child: IconButton(
         //       icon: const Icon(Icons.upload), // upload icon
@@ -214,9 +216,10 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 ),
 
                 // --> For pdf upload
-
                 InkWell(
-                  onTap: _pickPDF,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MaterialUpload(),),
+                  ),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 0.46,
@@ -261,9 +264,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ],
             ),
           )
-        : _file != null
-            // Image Upload Screen
-            ? Scaffold(
+        : Scaffold(
                 // after click on icon
                 // --> Top bar of screen. -> appBar --> AppBar()
                 appBar: AppBar(
@@ -378,71 +379,72 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ],
                   ),
                 ),
-              )
-            // Pdf Uplaod screen
-            : Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.blue,
-                  leading: IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: clearPdf,
-                  ),
-                  title: const Text('Add Material'),
-                  centerTitle: false,
-                  actions: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Post',
-                        style: TextStyle(
-                          color: primaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                body: SingleChildScrollView(
-                  child: Container(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // Pdf view
-                        Container(
-                          color: Colors.grey,
-                          padding: EdgeInsets.all(10),
-                          child: SizedBox(
-                            height: 400,
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            child: PDFView(
-                              filePath: _pdfFile!.path,
-                              enableSwipe: true,
-                              swipeHorizontal: true,
-                              autoSpacing: false,
-                              pageFling: false,
-                              defaultPage: 0,
-                            ),
-                          ),
-                        ),
-
-                        // --> Remove Pdf
-                        ElevatedButton.icon(
-                          onPressed: () {
-                          setState(() {
-                            _pdfFile = null;
-                          });
-                        },
-                          icon: Icon(Icons.clear), label: Text('Remove Selection'),
-                        ),
-
-                        // --> Dropdown menu for Select field
-                        MyDropdownButton(),
-                      ],
-                    ),
-                  ),
-                ),
               );
+            // Pdf Uplaod screen
+            // : Scaffold(
+            //     appBar: AppBar(
+            //       backgroundColor: Colors.blue,
+            //       leading: IconButton(
+            //         icon: const Icon(Icons.arrow_back),
+            //         onPressed: clearPdf,
+            //       ),
+            //       title: const Text('Add Material'),
+            //       centerTitle: false,
+            //       actions: [
+            //         TextButton(
+            //           onPressed: () {},
+            //           child: const Text(
+            //             'Post',
+            //             style: TextStyle(
+            //               color: primaryColor,
+            //               fontWeight: FontWeight.bold,
+            //               fontSize: 16,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //     body: SingleChildScrollView(
+            //       child: Container(
+            //         width: double.infinity,
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.center,
+            //           children: [
+            //             // Pdf view
+            //             Container(
+            //               color: Colors.grey,
+            //               padding: EdgeInsets.all(10),
+            //               child: SizedBox(
+            //                 height: 400,
+            //                 width: MediaQuery.of(context).size.width * 0.8,
+            //                 child: PDFView(
+            //                   filePath: _pdfFile!.path,
+            //                   enableSwipe: true,
+            //                   swipeHorizontal: true,
+            //                   autoSpacing: false,
+            //                   pageFling: false,
+            //                   defaultPage: 0,
+            //                 ),
+            //               ),
+            //             ),
+            //
+            //             // --> Remove Pdf
+            //             ElevatedButton.icon(
+            //               onPressed: () {
+            //               setState(() {
+            //                 _pdfFile = null;
+            //               });
+            //             },
+            //               icon: Icon(Icons.clear), label: Text('Remove Selection'),
+            //             ),
+            //
+            //             // --> Dropdown menu for Select field
+            //             MyDropdownButton(),
+            //           ],
+            //         ),
+            //       ),
+            //     ),
+            //   );
+
   }
 }

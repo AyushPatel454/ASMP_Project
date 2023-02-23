@@ -2,11 +2,13 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:student_app/models/question.dart';
 import 'package:student_app/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 
 import '../models/answer.dart';
+import '../models/material.dart';
 import '../models/post.dart';
 
 class FirestoreMethods {
@@ -43,6 +45,55 @@ class FirestoreMethods {
 
       // --> Store data in Fire Store Database. (Post image not store. It will be store in Storage Database. -> storage_methods.dart file for post image store in storage database.)
       _firestore.collection('posts').doc(postId).set(post.toJson(),); // --> post.toJson -> Convert in JSON format & uplaod in firestore datbase
+
+      res = "success";
+    } catch(err) {
+      res = err.toString();
+    }
+
+    return res;
+  }
+
+  // --> Upload pdf
+  Future<String> uploadPdf(
+      String fieldId,
+      String subjecId,
+      String title,
+      String materialType,
+      String materialField,
+      String materialSubject,
+      String materialUrl,
+      // Uint8List file,
+      String uid,
+      String username,
+      String profImage,
+      String userField,
+      String userInstitue
+      ) async {
+    String res = "Some error occured";
+    try {
+      // upload in firestore & take url of image & store in variable.
+      // String photUrl = await StorageMethods().uploadImageToStorage('posts', file, true);
+
+      String materialId = const Uuid().v1();
+      MaterialTwo material = MaterialTwo(
+          title: title,
+          materialId: materialId,
+          materialType: materialType,
+          materialSubject: materialSubject,
+          materialField: materialField,
+          materialUrl: materialUrl,
+          uid: uid,
+          username: username,
+          profImage: profImage,
+          userField: userField,
+          userInstitute: userInstitue,
+          datePublished: DateTime.now(),
+          likes: [],
+      );
+
+      // --> Store data in Fire Store Database. (Post image not store. It will be store in Storage Database. -> storage_methods.dart file for post image store in storage database.)
+      _firestore.collection('fields').doc(fieldId).collection('Subjects').doc(subjecId).collection(materialType).doc(materialId).set(material.toJson(),); // --> post.toJson -> Convert in JSON format & uplaod in firestore datbase
 
       res = "success";
     } catch(err) {
