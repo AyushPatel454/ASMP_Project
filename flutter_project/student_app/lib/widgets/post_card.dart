@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:student_app/screens/profile_screen.dart';
 
 import '../models/user.dart';
 import '../providers/user_provider.dart';
@@ -60,79 +61,84 @@ class _PostCardState extends State<PostCard> {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16)
                 .copyWith(right: 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // --> Display profile image
-                CircleAvatar(
-                  radius: 25,
-                  backgroundImage: NetworkImage(
-                    widget.snap[
-                        'profImage'], // take profile image url from Firestore Database docs --> Posts docs.
-                  ),
-                ),
-
-                // --> Display user name. after profile photo
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.snap[
-                                  'username'], // take username from Firestore Database docs --> Posts docs.
-                              style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              widget.snap['field'],
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ],
+            child: GestureDetector(
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ProfileScreen(uid: widget.snap['uid'],),),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // --> Display profile image
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage(
+                      widget.snap[
+                          'profImage'], // take profile image url from Firestore Database docs --> Posts docs.
                     ),
                   ),
-                ),
 
-                // --> 3 dot button
-                IconButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => Dialog(
-                              child: ListView(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 16,
-                                  ),
-                                  shrinkWrap: true,
-                                  children: [
-                                    'Report',
-                                  ]
-                                      .map(
-                                        (e) => InkWell(
-                                          onTap: () {},
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 12,
-                                              horizontal: 16,
+                  // --> Display user name. after profile photo
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.snap[
+                                    'username'], // take username from Firestore Database docs --> Posts docs.
+                                style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                widget.snap['field'],
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // --> 3 dot button
+                  IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                                child: ListView(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
+                                    ),
+                                    shrinkWrap: true,
+                                    children: [
+                                      'Report',
+                                    ]
+                                        .map(
+                                          (e) => InkWell(
+                                            onTap: () {},
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(
+                                                vertical: 12,
+                                                horizontal: 16,
+                                              ),
+                                              child: Text(e),
                                             ),
-                                            child: Text(e),
                                           ),
-                                        ),
-                                      )
-                                      .toList()),
-                            ));
-                  },
-                  icon: const Icon(Icons.more_vert),
-                ),
-              ],
+                                        )
+                                        .toList()),
+                              ));
+                    },
+                    icon: const Icon(Icons.more_vert),
+                  ),
+                ],
+              ),
             ),
           ),
 

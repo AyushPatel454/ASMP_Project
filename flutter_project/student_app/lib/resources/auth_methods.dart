@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_app/resources/storage_methods.dart';
 import 'package:student_app/models/user.dart' as model;
 
@@ -119,5 +120,18 @@ class AuthMethods {
       res = err.toString();
     }
     return res;
+  }
+
+  // --> Sign out.
+  Future<void>  signOut() async {
+    await _auth.signOut();
+    clearCache();
+  }
+
+  // --> Remove cahched when user log out
+  // Function to clear the cache
+  Future<void> clearCache() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 }
