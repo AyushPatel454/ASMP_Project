@@ -1,0 +1,18 @@
+Skills:
+Java (Android app)
+HTML ,CSS , JavaScript, php
+React js
+MongoDB , mysql
+
+
+Create Mobile Application App. In which all same levels people (Students, Professionals) are meet each other and share any kind of information they have regarding what they do (Like: study related, Profession related). And they can communicate to each other like commute. If any one have any doubt then they can post question or they can drop message to well known person whose provide best contents , helping others more. They can connect or follows to that person whose is posting goods contents and who are helping more to others. 
+
+In commute there is provides all learning materials, Resources. So no need to find resources individually. Only those resources are visible which are more used by others and helpful for them.  So students can not confuse which resources we follow. 
+
+In commute schools or colleges are also register them selves. So all same branch students are connected each others and communicate , follow, asking questions regarding learning, and any other question regarding gain knowledge. Experts can also join commute so students also get help from experts.
+
+Many students or people are around us who are very confused some time in different different aspect of learning and they can't not communicate such people who are already do that particular thing in same domain and they have lot of experience so they can guide other also.  
+
+The main moto of this app is learn by helping others.
+
+Imagine One school student is studying in 12th standard. So 
