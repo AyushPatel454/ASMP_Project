@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import '../widgets/post_card.dart';
 
-class FeedScreen extends StatelessWidget {
+class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
 
+  @override
+  State<FeedScreen> createState() => _FeedScreenState();
+}
+
+class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

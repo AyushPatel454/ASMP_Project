@@ -81,7 +81,8 @@ class _QuestionFeedState extends State<QuestionFeed>
                         ],
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue, // Set the background color
+                        backgroundColor:
+                            Colors.blue, // Set the background color
                       ),
                     ),
                   ),
@@ -95,28 +96,34 @@ class _QuestionFeedState extends State<QuestionFeed>
 
                     // --> Add scroll bar in card also
                     child: Scrollbar(
-                      controller: _scrollController,
-                      thumbVisibility: true,
-                      child: StreamBuilder(
-                        // StreamBuilder() --> read real time stuff
-                          stream: FirebaseFirestore.instance.collection('questions').orderBy('datePublished', descending: true).snapshots(), // --> Orderby: for filtering. on based on date published. descending: true -> newest post shown top.
-                          builder: (context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-                            if (snapshot.connectionState == ConnectionState.waiting) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
+                        controller: _scrollController,
+                        thumbVisibility: true,
+                        child: StreamBuilder(
+                            // StreamBuilder() --> read real time stuff
+                            stream: FirebaseFirestore.instance
+                                .collection('questions')
+                                .orderBy('datePublished', descending: true)
+                                .snapshots(), // --> Orderby: for filtering. on based on date published. descending: true -> newest post shown top.
+                            builder: (context,
+                                AsyncSnapshot<
+                                        QuerySnapshot<Map<String, dynamic>>>
+                                    snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              return ListView.builder(
+                                controller: _scrollController,
+                                shrinkWrap: true, // --> Important for scrolling
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (context, index) => QuestionCard(
+                                  snap: snapshot.data!.docs[index].data(),
+                                  index: index,
+                                ),
                               );
-                            }
-                            return ListView.builder(
-                              controller: _scrollController,
-                              shrinkWrap: true, // --> Important for scrolling
-                              itemCount: snapshot.data!.docs.length,
-                              itemBuilder: (context, index) => QuestionCard(
-                                snap: snapshot.data!.docs[index].data(),
-                              ),
-                            );
-                          }
-                      )
-                    ),
+                            })),
                   ),
                 ],
               ),
