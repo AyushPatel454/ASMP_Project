@@ -3,7 +3,8 @@ import 'package:student_app/screens/list_of_answer.dart';
 
 class QuestionCard extends StatefulWidget {
   final snap;
-  const QuestionCard({Key? key, required this.snap}) : super(key: key);
+  int? index = 0;
+  QuestionCard({Key? key, required this.snap, this.index}) : super(key: key);
   // const QuestionCard({Key? key}) : super(key: key);
 
   @override
@@ -15,17 +16,21 @@ class _QuestionCardState extends State<QuestionCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ListOfAnswer(
-          snap: widget.snap, // --> Pass current post data. (which is we get from firebase database.)
+        MaterialPageRoute(
+          builder: (context) => ListOfAnswer(
+            snap: widget
+                .snap, // --> Pass current post data. (which is we get from firebase database.)
+          ),
         ),
       ),
-    ),
       child: Container(
         // width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(bottom: 8),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.blue, width: 2),
+          color: widget.index!.isEven
+              ? Color.fromARGB(165, 243, 153, 244)
+              : Color.fromARGB(179, 245, 121, 222),
+          // border: Border.all(color: Colors.blue, width: 2),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -72,7 +77,8 @@ class _QuestionCardState extends State<QuestionCard> {
                           Text(
                             // 'Username',
                             widget.snap['username'],
-                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             // 'CSE',
@@ -104,7 +110,8 @@ class _QuestionCardState extends State<QuestionCard> {
                                           (e) => InkWell(
                                             onTap: () {},
                                             child: Container(
-                                              padding: const EdgeInsets.symmetric(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
                                                 vertical: 12,
                                                 horizontal: 16,
                                               ),
@@ -130,9 +137,9 @@ class _QuestionCardState extends State<QuestionCard> {
                   Container(
                     child: RichText(
                         text: TextSpan(
-                      text: 'Question: (${widget.snap['questionType']})',
+                      text: 'Q: (${widget.snap['questionType']})',
                       style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 15,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     )),
@@ -143,7 +150,7 @@ class _QuestionCardState extends State<QuestionCard> {
                       // text: 'This is my Question.',
                       text: '${widget.snap['question']}',
                       style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 17,
                           color: Colors.black,
                           fontWeight: FontWeight.w500),
                     )),
@@ -181,7 +188,8 @@ class _QuestionCardState extends State<QuestionCard> {
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => ListOfAnswer(
-                      snap: widget.snap, // --> Pass current post data. (which is we get from firebase database.)
+                      snap: widget
+                          .snap, // --> Pass current post data. (which is we get from firebase database.)
                     ),
                   ),
                 ),

@@ -37,13 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (res == "success") {
       // --> Go to home screnn of app.
-      Navigator.of(context).pushReplacement(  // pushReplacement ---> for no go back previous screen.
-          MaterialPageRoute(
-            builder: (context) => const ResponsiveLayout(
-              mobileScreenLayout: MobileScreenLayout(),
-              webScreenLayout: WebScreenLayout(),
-            ),
+      Navigator.of(context).pushReplacement(
+        // pushReplacement ---> for no go back previous screen.
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            mobileScreenLayout: MobileScreenLayout(),
+            webScreenLayout: WebScreenLayout(),
           ),
+        ),
       );
     } else {
       // snackbar
