@@ -3,7 +3,8 @@ import 'package:student_app/screens/matirial_screens/showing_materials.dart';
 
 class SubjectCard extends StatefulWidget {
   final snap;
-  const SubjectCard({Key? key, required this.snap}) : super(key: key);
+  String? fieldId = "";
+  SubjectCard({Key? key, required this.snap, this.fieldId}) : super(key: key);
 
   @override
   State<SubjectCard> createState() => _SubjectCardState();
@@ -12,25 +13,30 @@ class SubjectCard extends StatefulWidget {
 class _SubjectCardState extends State<SubjectCard> {
   @override
   Widget build(BuildContext context) {
+    // print("---> " + widget.snap.toString());
+    print("---> Subject Card " + widget.fieldId.toString());
+    // print("---> Subject Card " + widget.snap['fieldID']);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           fixedSize:
-          Size(double.infinity, MediaQuery.of(context).size.height * 0.15),
+              Size(double.infinity, MediaQuery.of(context).size.height * 0.15),
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           backgroundColor: Colors.transparent,
         ),
-
         onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => BookAssignmentNotes(
-            snap: widget.snap,
-          ),),
+          MaterialPageRoute(
+            builder: (context) => BookAssignmentNotes(
+              snap: widget.snap,
+              fieldId: widget.fieldId,
+              subId: widget.snap['subjectID'],
+            ),
+          ),
         ),
-
         child: Container(
           // color: Colors.black.withOpacity(0.3),
           decoration: BoxDecoration(
@@ -44,10 +50,9 @@ class _SubjectCardState extends State<SubjectCard> {
             ],
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
-              image: NetworkImage(
-                  widget.snap['subjectImgUrl']
+              image: NetworkImage(widget.snap['subjectImgUrl']
                   // 'https://img.freepik.com/free-vector/computer-technology-isometric-icon-server-room-digital-device-set-element-design-pc-laptop_39422-1026.jpg?size=626&ext=jpg&ga=GA1.2.2064448125.1675152419&semt=ais',
-              ),
+                  ),
               fit: BoxFit.cover,
             ),
           ),

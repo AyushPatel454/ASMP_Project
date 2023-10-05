@@ -37,14 +37,17 @@ class _PostCardState extends State<PostCard> {
   void getComments() async {
     try {
       // -> going to in comments collection.
-      QuerySnapshot snap = await FirebaseFirestore.instance.collection('posts').doc(widget.snap['postId']).collection('comments').get();
-      commentLen = snap.docs.length; // -> take total of docs in comments collection
-    } catch(e) {
+      QuerySnapshot snap = await FirebaseFirestore.instance
+          .collection('posts')
+          .doc(widget.snap['postId'])
+          .collection('comments')
+          .get();
+      commentLen =
+          snap.docs.length; // -> take total of docs in comments collection
+    } catch (e) {
       showSnackBar(e.toString(), context);
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -63,7 +66,11 @@ class _PostCardState extends State<PostCard> {
                 .copyWith(right: 0),
             child: GestureDetector(
               onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileScreen(uid: widget.snap['uid'],),),
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(
+                    uid: widget.snap['uid'],
+                  ),
+                ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -93,7 +100,8 @@ class _PostCardState extends State<PostCard> {
                               Text(
                                 widget.snap[
                                     'username'], // take username from Firestore Database docs --> Posts docs.
-                                style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 widget.snap['field'],
@@ -124,7 +132,8 @@ class _PostCardState extends State<PostCard> {
                                           (e) => InkWell(
                                             onTap: () {},
                                             child: Container(
-                                              padding: const EdgeInsets.symmetric(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
                                                 vertical: 12,
                                                 horizontal: 16,
                                               ),
@@ -195,7 +204,7 @@ class _PostCardState extends State<PostCard> {
                             widget.snap[
                                 'postUrl'], // take post image url from Firestore Database docs --> Posts docs.
                           ),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                         border: Border.all(width: 5, color: Colors.white),
                         borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -244,10 +253,11 @@ class _PostCardState extends State<PostCard> {
                         widget.snap['postId'], user.uid, widget.snap['likes']);
                   },
                   icon: widget.snap['likes'].contains(user.uid)
-                      ? const Icon( // If user already liked than show like button in red fill.
-                    Icons.thumb_up,
-                    color: Colors.blue,
-                  )
+                      ? const Icon(
+                          // If user already liked than show like button in red fill.
+                          Icons.thumb_up,
+                          color: Colors.blue,
+                        )
                       : const Icon(Icons.thumb_up_alt_outlined),
                 ),
               ),
@@ -347,11 +357,13 @@ class _PostCardState extends State<PostCard> {
           ),
 
           // -> Divider
-          Divider(height: 2,
+          Divider(
+            height: 2,
             thickness: 2,
             indent: 0,
             endIndent: 0,
-            color: Colors.blue,)
+            color: Colors.blue,
+          )
         ],
       ),
     );

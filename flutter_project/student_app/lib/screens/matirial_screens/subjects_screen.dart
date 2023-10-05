@@ -24,15 +24,15 @@ class _SubjectScreenState extends State<SubjectScreen> {
       appBar: AppBar(
         title: Text('${widget.snap['fieldName']}'),
         centerTitle: true,
-
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
           child: Column(
             children: <Widget>[
-
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
@@ -44,7 +44,6 @@ class _SubjectScreenState extends State<SubjectScreen> {
                     speed: const Duration(milliseconds: 100),
                   ),
                 ],
-
                 totalRepeatCount: 2,
                 pause: const Duration(milliseconds: 1000),
                 displayFullTextOnTap: true,
@@ -52,14 +51,21 @@ class _SubjectScreenState extends State<SubjectScreen> {
               ),
 
               SingleChildScrollView(
-                scrollDirection: Axis.vertical ,
+                scrollDirection: Axis.vertical,
                 child: Scrollbar(
                   controller: _scrollController,
                   child: StreamBuilder(
-                    // StreamBuilder() --> read real time stuff
-                      stream: FirebaseFirestore.instance.collection('fields').doc(widget.snap['fieldID']).collection('Subjects').snapshots(), // --> Orderby: for filtering. on based on date published. descending: true -> newest post shown top.
-                      builder: (context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
+                      // StreamBuilder() --> read real time stuff
+                      stream: FirebaseFirestore.instance
+                          .collection('fields')
+                          .doc(widget.snap['fieldID'])
+                          .collection('Subjects')
+                          .snapshots(), // --> Orderby: for filtering. on based on date published. descending: true -> newest post shown top.
+                      builder: (context,
+                          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                              snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return const Center(
                             child: CircularProgressIndicator(),
                           );
@@ -70,10 +76,10 @@ class _SubjectScreenState extends State<SubjectScreen> {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) => SubjectCard(
                             snap: snapshot.data!.docs[index].data(),
+                            fieldId: widget.snap['fieldID'],
                           ),
                         );
-                      }
-                  ),
+                      }),
                 ),
               ),
               // CN(),

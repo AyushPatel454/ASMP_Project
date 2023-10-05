@@ -5,13 +5,17 @@ import 'package:student_app/screens/matirial_screens/screen/CSE/Computer_network
 
 class BookAssignmentNotes extends StatefulWidget {
   final snap;
-  const BookAssignmentNotes({Key? key, required this.snap}) : super(key: key);
+  String? fieldId;
+  String? subId;
+  BookAssignmentNotes({Key? key, required this.snap, this.fieldId, this.subId})
+      : super(key: key);
 
   @override
   State<BookAssignmentNotes> createState() => _BookAssignmentNotesState();
 }
 
-class _BookAssignmentNotesState extends State<BookAssignmentNotes> with TickerProviderStateMixin {
+class _BookAssignmentNotesState extends State<BookAssignmentNotes>
+    with TickerProviderStateMixin {
   late TabController _tabController;
   @override
   void initState() {
@@ -21,6 +25,8 @@ class _BookAssignmentNotesState extends State<BookAssignmentNotes> with TickerPr
 
   @override
   Widget build(BuildContext context) {
+    print(widget.snap.toString());
+    print("===> Tab screen.\tField = " + widget.fieldId.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.snap['subjectName']}'),
@@ -41,11 +47,16 @@ class _BookAssignmentNotesState extends State<BookAssignmentNotes> with TickerPr
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const <Widget>[
-          Book(),
-          Notes(),
+        children: <Widget>[
+          Book(
+            fieldId: widget.fieldId,
+            subId: widget.subId,
+          ),
+          Notes(
+            fieldId: widget.fieldId,
+            subId: widget.subId,
+          ),
           Assignment(),
-
         ],
       ),
     );
